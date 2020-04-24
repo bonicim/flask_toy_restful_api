@@ -10,7 +10,10 @@ setup(
     version="0.1.0",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["flask"],
     # metadata to display on PyPI
+    url="https://bonicim@bitbucket.org/bonicim/mvp_one.git",
+    author="Mark Bonicillo",
+    author_email="markabonicillo@gmail.com",
     long_description=readme,
+    license="MIT",
 )
