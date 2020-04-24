@@ -6,7 +6,7 @@ with open(readme_path, "r", encoding="utf-8") as f:
     readme = f.read()
 
 setup(
-    name="my_app",
+    name="paratech_mvp_one",
     version="0.1.0",
     packages=find_packages(),
     include_package_data=True,

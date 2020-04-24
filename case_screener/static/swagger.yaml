@@ -1,0 +1,66 @@
+openapi: 3.0.0
+
+info:
+  title: ParaTech-MVP-1
+  version: 1.0-beta
+  contact:
+    email: mark.a.bonicillo@gmail.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: /
+    description: Internal server for testing and development
+
+paths:
+  /case:
+    post:
+      description: Returns a case Id for a new case
+      summary: Create a new case request
+      requestBody:
+        description: Case Request Post Object
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              $ref: '#/components/schemas/CaseRequestPostBody'
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/CaseRequestPostBody'
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: string
+        400:
+          description: Failed. Bad post data.
+
+components:
+  # Reusable schemas (data models)
+  schemas:
+    CaseRequestPostBody:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone_number:
+          type: string
+        accident:
+          type: string
+        cause:
+          type: string
+        injury:
+          type: string
+      required:
+        - name
+        - email
+        - phone_number
+        - accident
+        - cause
+        - injury

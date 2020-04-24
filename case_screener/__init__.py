@@ -1,12 +1,21 @@
 from flask import Flask, Blueprint
 from flask_migrate import Migrate
 from flask_restful import Api
+from flask_swagger_ui import get_swaggerui_blueprint
 from case_screener.resources.case_resource import CaseResource
 from case_screener.config import BaseConfig
 
-api_bp = Blueprint("api", __name__)
-api = Api(api_bp)
+
+API_BLUEPRINT = Blueprint("api", __name__)
+api = Api(API_BLUEPRINT)
+
 migrate = Migrate()
+
+SWAGGER_URL = "/api/spec"
+API_URL = "/static/swagger.yaml"
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL, API_URL, config={"app_name": "ParaTech-MVP-1"}
+)
 
 
 def create_app(config=None):
@@ -28,6 +37,7 @@ def create_app(config=None):
     api.add_resource(CaseResource, "/case")
 
     # Blueprint config
-    app.register_blueprint(api_bp)
+    app.register_blueprint(API_BLUEPRINT)
+    app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
     return app

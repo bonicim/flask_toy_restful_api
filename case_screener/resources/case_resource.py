@@ -52,7 +52,7 @@ class CaseResource(Resource):
 
     def _acknowledge_client(self, case):
         msg = (
-            f"Hi {case.name}. Your case, caseId {case.id} has successfully processed. "
+            f"Hi {case.name}. Your case, caseId {case.id}, has successfully processed. "
             f"We will get back to you soon. Thanks and have a nice day."
         )
         return {"msg": msg}

@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.0",
+
+  "info": {
+    "description": "paratech api spec for mvp-1",
+    "version": "1.0.0",
+    "title": "ParaTech-mvp-1",
+    "contact": {
+      "email": "mark.a.bonicillo@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "servers": [
+    {
+      "url": "/",
+      "description": "Internal server for testing and development"
+    }
+  ],
+
+  "paths": {
+    "/case": {
+      "post": {
+        "summary": "Create a new case request",
+        "requestBody": {
+          "description": "Case Request Post Body",
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/caseRequestPostBody"
+              }
+            },
+           "application/json": {
+             "schema": {
+               "$ref": "#/components/schemas/caseRequestPostBody"
+             }
+           }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/id"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "id": {
+        "properties": {
+          "msg": {
+            "type": "string"
+          }
+        }
+      },
+
+      "caseRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "accident": {
+            "type": "string"
+          },
+          "cause": {
+            "type": "string"
+          },
+          "injury": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "email", "phone_number", "accident", "cause", "injury"]
+      }
+    }
+  }
+}
